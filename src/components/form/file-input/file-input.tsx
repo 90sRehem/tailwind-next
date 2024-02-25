@@ -5,7 +5,6 @@ import { FileInputPreview } from './file-input-preview'
 import { FileInputList } from './file-input-list'
 import { FileInputListItem } from './file-input-list-item'
 
-
 export const FileInput = {
   Root: FileInputRoot,
   Trigger: FileInputTrigger,

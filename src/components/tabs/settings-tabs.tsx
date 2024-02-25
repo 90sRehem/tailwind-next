@@ -129,11 +129,11 @@ export function SettingsTabs() {
                 </Input.Root>
 
                 <div className={'flex flex-col gap-3 lg:block'}>
-                  <Label.Root htmlFor={'firstName'}>Last name</Label.Root>
+                  <Label.Root htmlFor={'lastName'}>Last name</Label.Root>
                   <Input.Root>
                     <Input.Control
                       type={'text'}
-                      id={'firstName'}
+                      id={'lastName'}
                       placeholder={'Last name'}
                     />
                   </Input.Root>
@@ -145,7 +145,6 @@ export function SettingsTabs() {
               className={'flex flex-col gap-3 py-5 lg:grid lg:grid-cols-form'}
             >
               <Label.Root htmlFor={'email'}>Email</Label.Root>
-
               <Input.Root>
                 <Input.Prefix>
                   <Mail className={'h-5 w-5 text-zinc-400'} />
@@ -170,6 +169,7 @@ export function SettingsTabs() {
               </Label.Root>
 
               <FileInput.Root
+                id={'photo'}
                 className={'flex flex-col gap-5 lg:flex-row lg:items-start'}
               >
                 <FileInput.ImagePreview />
@@ -199,7 +199,6 @@ export function SettingsTabs() {
             <div
               className={'flex flex-col gap-3 py-5 lg:grid lg:grid-cols-form'}
             >
-              <Label.Root htmlFor={'country'}>Country</Label.Root>
               <CountrySelect />
             </div>
 
@@ -209,7 +208,7 @@ export function SettingsTabs() {
               <Label.Root htmlFor={'timezone'}>Timezone</Label.Root>
 
               <Select.Root name="timezone">
-                <Select.Trigger>
+                <Select.Trigger id={'timezone'}>
                   <Select.Value placeholder="Select your timezone..." />
                 </Select.Trigger>
 

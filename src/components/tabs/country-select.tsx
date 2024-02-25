@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Select } from '@/components'
+import { Label, Select } from '@/components'
 import { countries } from '@/utils/countries'
 import Flag from 'react-world-flags'
 
@@ -15,40 +15,43 @@ export function CountrySelect() {
   }
 
   return (
-    <Select.Root
-      name="country"
-      value={value}
-      onValueChange={handleCountrySelected}
-    >
-      <Select.Trigger>
-        <Select.Value placeholder="Select your country...">
-          {value && (
-            <>
-              <Flag
-                className="h-5 w-5 rounded-full object-cover object-center"
-                code={value}
-              />
-              {countries[value]}
-            </>
-          )}
-        </Select.Value>
-      </Select.Trigger>
-
-      <Select.Content>
-        {Object.entries(countries).map(([code, title]) => {
-          return (
-            <Select.Item key={code} value={code}>
-              <Select.ItemPrefix>
+    <>
+      <Label.Root htmlFor={'country'}>Country</Label.Root>
+      <Select.Root
+        name="country"
+        value={value}
+        onValueChange={handleCountrySelected}
+      >
+        <Select.Trigger id={'country'}>
+          <Select.Value placeholder="Select your country...">
+            {value && (
+              <>
                 <Flag
                   className="h-5 w-5 rounded-full object-cover object-center"
-                  code={code}
+                  code={value}
                 />
-              </Select.ItemPrefix>
-              <Select.ItemText>{title}</Select.ItemText>
-            </Select.Item>
-          )
-        })}
-      </Select.Content>
-    </Select.Root>
+                {countries[value]}
+              </>
+            )}
+          </Select.Value>
+        </Select.Trigger>
+
+        <Select.Content>
+          {Object.entries(countries).map(([code, title]) => {
+            return (
+              <Select.Item key={code} value={code}>
+                <Select.ItemPrefix>
+                  <Flag
+                    className="h-5 w-5 rounded-full object-cover object-center"
+                    code={code}
+                  />
+                </Select.ItemPrefix>
+                <Select.ItemText>{title}</Select.ItemText>
+              </Select.Item>
+            )
+          })}
+        </Select.Content>
+      </Select.Root>
+    </>
   )
 }

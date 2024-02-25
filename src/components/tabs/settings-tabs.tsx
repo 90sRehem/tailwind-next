@@ -6,6 +6,7 @@ import { useState } from 'react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Button, FileInput, Input, Label, Select, Textarea } from '@/components'
 import { Bold, Italic, Link, List, ListOrdered, Mail } from 'lucide-react'
+import { CountrySelect } from '@/components/tabs/country-select'
 
 const tabItems = [
   { value: 'tab1', title: 'My details' },
@@ -177,45 +178,49 @@ export function SettingsTabs() {
               </FileInput.Root>
             </div>
 
-            <div
-              className={'flex flex-col gap-3 py-5 lg:grid lg:grid-cols-form'}
-            >
-              <Label.Root htmlFor={'role'}>Role</Label.Root>
-
-              <Input.Root>
-                <Input.Control
-                  type={'text'}
-                  id={'role'}
-                  placeholder={'Admin'}
-                />
-              </Input.Root>
+            <div className="grid gap-3 pt-5 lg:grid-cols-form">
+              <label
+                htmlFor="role"
+                className="text-sm font-medium text-zinc-700 dark:text-zinc-100"
+              >
+                Role
+              </label>
+              <div className="flex gap-3">
+                <Input.Root>
+                  <Input.Control
+                    name="role"
+                    id="role"
+                    defaultValue="Product Designer"
+                  />
+                </Input.Root>
+              </div>
             </div>
 
             <div
               className={'flex flex-col gap-3 py-5 lg:grid lg:grid-cols-form'}
             >
-              <Label.Root htmlFor={'role'}>Country</Label.Root>
-
-              <Select.Root placeholder={'Select a country'}>
-                <Select.Item value={'US'} text={'United States'} />
-                <Select.Item value={'BR'} text={'Brazil'} />
-              </Select.Root>
+              <Label.Root htmlFor={'country'}>Country</Label.Root>
+              <CountrySelect />
             </div>
 
             <div
               className={'flex flex-col gap-3 py-5 lg:grid lg:grid-cols-form'}
             >
-              <Label.Root htmlFor={'role'}>Timezone</Label.Root>
+              <Label.Root htmlFor={'timezone'}>Timezone</Label.Root>
 
-              <Select.Root placeholder={'Select a timezone'}>
-                <Select.Item
-                  value="utc8"
-                  text="Pacific Standard Time (UTC-08:00)"
-                />{' '}
-                <Select.Item
-                  value="utc3"
-                  text="America São Paulo (UTC-03:00)"
-                />
+              <Select.Root name="timezone">
+                <Select.Trigger>
+                  <Select.Value placeholder="Select your timezone..." />
+                </Select.Trigger>
+
+                <Select.Content>
+                  <Select.Item value="utc-3">
+                    <Select.ItemText>
+                      Pacific Standard Time (PST)
+                      <span className="text-sm text-zinc-500">UTC 08:00</span>
+                    </Select.ItemText>
+                  </Select.Item>
+                </Select.Content>
               </Select.Root>
             </div>
 
@@ -232,13 +237,19 @@ export function SettingsTabs() {
 
               <div className={'space-y-3 '}>
                 <div className={'flex flex-col gap-3 lg:grid lg:grid-cols-2'}>
-                  <Select.Root placeholder={''} defaultValue={'normal'}>
-                    <Select.Item
-                      value="normal"
-                      text="Normal text"
-                      defaultChecked
-                    />{' '}
-                    <Select.Item value="md" text="markdown" />
+                  <Select.Root defaultValue="normal">
+                    <Select.Trigger>
+                      <Select.Value />
+                    </Select.Trigger>
+
+                    <Select.Content>
+                      <Select.Item value="normal">
+                        <Select.ItemText>Normal text</Select.ItemText>
+                      </Select.Item>
+                      <Select.Item value="md">
+                        <Select.ItemText>Markdown</Select.ItemText>
+                      </Select.Item>
+                    </Select.Content>
                   </Select.Root>
 
                   <div className={'flex items-center gap-1'}>
